@@ -11,7 +11,7 @@ public class StudentTest {
         String expectedFirstName = "Hillary";
         String expectedLastName = "Givhan";
         Double[] expectedExamScores = {90.00, 85.00, 70.00};
-        String expectedExamScoresAsString = "Exam Scores:\n \tExam 1 -> 90.0\n" + "\tExam 2 -> 85.0\n" + "\tExam 3 -> 70.0\n";
+        String expectedExamScoresAsString = "Exam Scores:\n\tExam 1 -> 90.0\n" + "\tExam 2 -> 85.0\n" + "\tExam 3 -> 70.0\n";
 
 
         Student newStudent = new Student(expectedFirstName, expectedLastName, expectedExamScores);
@@ -25,7 +25,7 @@ public class StudentTest {
     }
 
     @Test
-    public void testFirstName() {
+    public void setFirstName() {
         String expectedFirstName = "Hillary";
 
         Student newStudent = new Student(expectedFirstName, "", new Double[0]);
@@ -35,7 +35,7 @@ public class StudentTest {
     }
 
     @Test
-    public void testLastName() {
+    public void setLastName() {
         String expectedLastName = "Givhan";
 
         Student newStudent = new Student("", expectedLastName, new Double[0]);
@@ -54,8 +54,48 @@ public class StudentTest {
         Assert.assertEquals(expectedExamScores, actualExamScores);
     }
 
+    @Test
+    public void getNumberOfExamsTest(){
+        Student student = new Student(null, null, new Double[]{90.0, 85.0, 70.0});
+        int expectedNumber = 3;
 
+        int actualNumber = student.getNumberOfExamsTaken();
 
+        Assert.assertEquals(expectedNumber,actualNumber);
+
+    }
+
+    @Test
+    public void addExamScoresTest(){
+        Student student = new Student("John", "Doe", new Double[]{});
+        String expectedReturn = "Exam Scores:\n" + "\tExam 1 -> 85.0\n";
+
+        student.addExamScore(85.0);
+        String actualReturn = student.getExamScores();
+
+        Assert.assertEquals(expectedReturn, actualReturn);
+    }
+
+    @Test
+    public void setAvgExamScoresTest(){
+        Student student = new Student(null, null, new Double[]{80.00, 100.00});
+        Double expectedAverage = 90.0;
+
+        Double actualAverage = student.getAverageExamScore();
+
+        Assert.assertEquals(expectedAverage, actualAverage);
+
+    }
+
+    @Test
+    public void toStringTest(){
+        Student student = new Student("Mackensie", "Blair", new Double[]{100.0});
+        String expectedOutput = "Student Name: Mackensie Blair\n> Average Score: 100.0\n>Exam Scores:\n\tExam 1 -> 100.0\n";
+
+        String actualOutput = student.studentToString();
+
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
 
     }
 

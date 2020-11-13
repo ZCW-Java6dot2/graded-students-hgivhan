@@ -60,7 +60,7 @@ public class Student {
         }
 
     public String studentToString(){
-        return String.format("Student Name: %s %s\n> Average Score: %3.1f\n", getFirstName(), getLastName(), getAverageExamScore());
+        return String.format("Student Name: %s %s\n> Average Score: %3.1f\n>", getFirstName(), getLastName(), getAverageExamScore()) + getExamScores();
     }
 }
 

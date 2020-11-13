@@ -1,10 +1,9 @@
 package io.zipcoder;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class Classroom {
-    Student[] students;
+    private Student[] students;
 
     public Classroom(int maxNumberOfStudents){
         this.students = new Student[maxNumberOfStudents];
@@ -53,9 +52,43 @@ public class Classroom {
             }
         }
         Arrays.sort(students, new SortNulls()); //students is array we operate on, new Sort Nulls() is our comparator- instructions for the sort
-            //we have to create comparator iwth instructions
+            //we have to create comparator with instructions
 
         }
+
+        public Student[] getStudentsByScore() {
+        Arrays.sort(students, new SortScore());
+            return students;
+    }
+
+//    public Map<Student, String> getGradeBook(){
+//        Classroom newC = new Classroom(); // make new classroom
+//        Student[] newCSize = newC.getStudentsByScore(); // get all students by score
+//        List <Student> newCList = Arrays.asList(newCSize); // make into arraylist
+//        ArrayList <String> gradeA = new ArrayList<>();
+//        ArrayList <String> gradeB = new ArrayList<>();
+//        ArrayList <String> gradeC = new ArrayList<>();
+//        ArrayList <String> gradeD = new ArrayList<>();
+//        ArrayList <String> gradeF = new ArrayList<>();
+//        String grade = "";
+//        LinkedHashMap<Student,String> returnMap = new LinkedHashMap<Student, String>();
+//
+//        for(Student s : students){
+//            if
+
+
+
+
+
+
+
+
+        // get total # of students in class
+        // get sorted student averages
+        //loop through students
+        // calculate percentiles
+        //assign students to percentiles/letter grads
+        // look at phonebook for mapping
 
 
     }
@@ -81,3 +114,27 @@ public class Classroom {
     }
 
 }
+
+    class SortScore implements Comparator<Student> {
+        public int compare(Student s1, Student s2) {
+    if (s1 == null && s2 == null) {
+            return 0;
+        }
+    else if (s1.getAverageExamScore() == s2.getAverageExamScore()){
+            return s1.getLastName().compareTo(s2.getLastName());
+        }
+    else if (s1.getAverageExamScore() < s2.getAverageExamScore()){
+            return 1;
+        }
+    else if (s1.getAverageExamScore() > s2.getAverageExamScore()){
+            return -1;
+        }
+    else { return 0; }
+        }
+
+
+    }
+
+
+//The class Classroom should define a method getStudentsByScore() which returns an array representation of Student objects sorted in descending order by score.
+//If two students have the same class average, order them lexigraphically.
